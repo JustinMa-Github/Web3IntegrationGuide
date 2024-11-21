@@ -21,7 +21,7 @@ Once you learn how to add a listener for the Transfer event, you’ll know how t
 # Suggested Order for Using These Demos
 1. Choose the demo that best fits your project: ReactEthWeb3, ReactEthEther or others.
 2. Run the demo by following the **How to Run** in each demo’s README.md.
-3. Test the six buttons to explore the features,if you are new to crypto, follow the **How toPlay** part in each demo’s README.md.
+3. Test the six buttons to explore the features,if you are new to crypto, follow the **How to Play** part in each demo’s README.md.
 4. Follow the **How to Recreate** part in each demo’s README.md to recreate the demo from scratch.
 
 If you can successfully recreate the demo from scratch, you'll have the skills to integrate any contract into your project. They are simply include additional functions and events, nothing more.
@@ -48,6 +48,6 @@ This is a standard ERC-20 token with an unlimited mint function, allowing anyone
 ## About contract folder
 This directory contains the ABI files for testing contracts, as well as the `index.js` file, which includes the function for creating contract instances. The design of `index.js` is simple, so you can easily understand the code. If you want to test your own contract, simply copy your contract’s ABI file into this directory and update the contract address and ABI filename in `index.js`.
 
-In the contract folder, there is also an additional JavaScript file: like useWeb3.js in the react-eth-web3 project or useEthers.js in the react-eth-ethers project. These files act as adapter hooks to bridge the differences between various libraries. While you could bypass them entirely and implement the desired functionality and connection management directly within App.js, using these hooks provides a clearer structure, allowing you to see exactly how to integrate a contract.
+In the contract folder, there is also an additional JavaScript file: like useWeb3.js in the react_eth_web3 project or useEthers.js in the react_eth_ethers project. These files act as adapter hooks to bridge the differences between various libraries. While you could bypass them entirely and implement the desired functionality and connection management directly within App.js, using these hooks provides a clearer structure, allowing you to see exactly how to integrate a contract.
 
 Additionally, you can configure the test chain you want to use in `index.js`, such as Sepolia, BSC testnet, etc.

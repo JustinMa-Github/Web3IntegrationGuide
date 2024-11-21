@@ -14,7 +14,7 @@ const App = () => {
     OtherContractInFuture: null,
   });
 
-  //Setp 1: Connect to wallet. 
+  //Setp 1: Connect to wallet by invoking connect function directly. 
   //The context will be updated automatically after user connected to wallet
 
   //Step 2: Create instance of contract.
