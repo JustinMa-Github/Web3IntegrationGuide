@@ -28,22 +28,7 @@ If you can successfully recreate the demo from scratch, you'll have the skills t
 
 # About the test contract
 
-```
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-
-contract JustinTestToken is ERC20 {
-    constructor() ERC20("JustinTestToken", "JTT"){}
-
-    //This is a test token, so eneryone can mint it
-    function mint(address account, uint256 amount)public {
-        _mint(account, amount);
-    }
-}
-```
-This is a standard ERC-20 token with an unlimited mint function, allowing anyone to mint tokens. The contract has been deployed on several test chains, and you can find its address in *contract/index.js*.
+The test token contract called JustinTestToken is in [THIS](https://github.com/JustinMaDev/JustinTestToken) repository.
 
 ## About contract folder
 This directory contains the ABI files for testing contracts, as well as the `index.js` file, which includes the function for creating contract instances. The design of `index.js` is simple, so you can easily understand the code. If you want to test your own contract, simply copy your contract’s ABI file into this directory and update the contract address and ABI filename in `index.js`.

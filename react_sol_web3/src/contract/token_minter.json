@@ -111,7 +111,7 @@
             "seeds": [
               {
                 "kind": "account",
-                "path": "payer"
+                "path": "receiver"
               },
               {
                 "kind": "const",
@@ -193,6 +193,9 @@
               ]
             }
           }
+        },
+        {
+          "name": "receiver"
         },
         {
           "name": "payer",

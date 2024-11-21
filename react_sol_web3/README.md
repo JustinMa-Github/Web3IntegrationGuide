@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Integrate Sol contract to a React project using Web3.js and Anchor framework
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to Run
+0. It’s recommended to use Node.js version 16.
+1. Navigate to the ReactSolWeb3 directory and run **npm install**.
+2. Start the project with **npm start**.
 
-## Available Scripts
+## How to Play
+After you started this demo, you can see a simple page with 6 buttons, follow the steps below and you will experience an whole life cycle of DApp.
+**Note**: This demo focuses on contract integration, so there is no UI output. All outputs are displayed in the **console**.
 
-In the project directory, you can run:
+0. **Install Phantom**: Make sure you have Phantom installed in your browser. Log in and confirm you have test tokens on a test network like Devnet. Faucet is a good way to get Sol in Devnet.
+1. **Connect to Phantom**: Click the **Connect** button in demo page. If you're not logged in, this action will open the Phantom login window. After succedded, you can find your public key in console.
+2. **Create Contract Instance**: Once connected, you can click createInstance button to create a contract instance with the contract's IDL.You need this instance to interact with Rust contract(ie. Solana program).
+3. **Optional - Set Up Event Listener**: Add a listener for this **Token** to monitor token transfers.
+4. **Check Total Supply**: Call the `totalSupply` function. You can view the output in the **console**.
+5. **Mint Tokens**: Mint tokens to an account. This action will prompt a Phantom confirmation window. Click **Confirm** to send the transaction.
+6. **Verify Transaction**: After the transaction is confirmed, check the output in console.
 
-### `npm start`
+## How to Recreate
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+0. It’s recommended to use Node.js version 16.
+1. run *npx create-react-app ReactSolWeb3* to create a blank React demo.
+2. npm install solana/web3.js @coral-xyz/anchor @solana/spl-token
+3. copy contract folder to your project.
+4. Modify App.js to create 6 buttons to corresponding to six functions, you can start from **connect** function.

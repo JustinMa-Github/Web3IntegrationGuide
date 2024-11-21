@@ -17,7 +17,7 @@
 5. **Mint Tokens**: Mint tokens to an account. This action will prompt a MetaMask confirmation window. Click **Confirm** to send the transaction.
 6. **Verify Transaction**: After the transaction is confirmed, check the output from the Transfer event listener, as well as the updated `totalSupply` value in the console.
 
-## How to Recreat
+## How to Recreate
 
 0. It’s recommended to use Node.js version 16.
 1. run *npx create-react-app ReactEthWeb3* to create a blank React demo.

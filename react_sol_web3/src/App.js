@@ -5,6 +5,7 @@ import { Contract, useWeb3 } from './contract';
 import * as anchor from "@coral-xyz/anchor";
 import { Buffer } from "buffer";
 import { getMint } from "@solana/spl-token";
+import { PublicKey} from "@solana/web3.js";
 
 function App() {
   const { isConnected, publicKey, provider, connection, connect, disconnect } = useWeb3();
@@ -30,6 +31,7 @@ function App() {
   }
 
   async function addTokenListener(){
+    // Mointor a event of a Solana token is not as easy as Ethereum, but it's possible.
     connection.onLogs(
       Contract.JustinTestToken.mintAccount,
       (logInfo) => {
@@ -38,6 +40,7 @@ function App() {
       },
       "confirmed"
     );
+    console.log("Token listener added.");
   }
 
   async function totalSupply(){
@@ -54,9 +57,10 @@ function App() {
     }
     
     const payer = provider.wallet.publicKey; // Payer 的地址
+    const receiver = new PublicKey("3VW79TUVeb5wpC8NhqrqyuUekdJyncfEfoxeMwqJuJyb");
     const destinationAccount = anchor.utils.token.associatedAddress({
       mint: Contract.JustinTestToken.mintAccount,
-      owner: payer,
+      owner: receiver,
     });
     const quantity = new anchor.BN("100000000");
     
@@ -74,6 +78,7 @@ function App() {
         .accounts({
           mint: Contract.JustinTestToken.mintAccount,
           destination: destinationAccount,
+          receiver: receiver,
           payer: payer,
           rent: anchor.web3.SYSVAR_RENT_PUBKEY,
           systemProgram: anchor.web3.SystemProgram.programId, 
