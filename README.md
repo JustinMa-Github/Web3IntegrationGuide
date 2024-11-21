@@ -31,7 +31,7 @@ If you can successfully recreate the demo from scratch, you'll have the skills t
 The test token contract called JustinTestToken is in [THIS](https://github.com/JustinMaDev/JustinTestToken) repository.
 
 ## About contract folder
-This directory contains the ABI files for testing contracts, as well as the `index.js` file, which includes the function for creating contract instances. The design of `index.js` is simple, so you can easily understand the code. If you want to test your own contract, simply copy your contract’s ABI file into this directory and update the contract address and ABI filename in `index.js`.
+This directory contains the ABI/IDL files for testing contracts, as well as the `index.js` file, which includes the function for creating contract instances. The design of `index.js` is simple, so you can easily understand the code. If you want to test your own contract, simply copy your contract’s ABI file into this directory and update the contract address and ABI filename in `index.js`.
 
 In the contract folder, there is also an additional JavaScript file: like useWeb3.js in the react_eth_web3 project or useEthers.js in the react_eth_ethers project. These files act as adapter hooks to bridge the differences between various libraries. While you could bypass them entirely and implement the desired functionality and connection management directly within App.js, using these hooks provides a clearer structure, allowing you to see exactly how to integrate a contract.
 
