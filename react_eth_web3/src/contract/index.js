@@ -29,18 +29,23 @@ export const Contract = {
     contractName:JustinTestTokenAbi.contractName,
     address:'0x03b04076860da07a5938689001A6A21d6778a628',
     abi:JustinTestTokenAbi.abi,
+    _instance : null,
     getInstance:async function(web3){
       return await Contract._getInstance(this, web3);
     }
   },
   _getInstance: async function (contractConfig, web3) {
+    if (contractConfig._instance) {
+      return contractConfig._instance;
+    }
     const chainId = await web3?.eth.getChainId();
     if (chainId !== parseInt(Contract.NETWORK.chainId, 16)) {
       console.error("ChainId not match, please switch to correct network, current chainId: ", chainId, 
                     " contract ", contractConfig.contractName, " was deployed on chain: ", Contract.NETWORK.chainId);
       return null;
     }
-    return new web3.eth.Contract(contractConfig.abi,contractConfig.address);
+    contractConfig._instance = new web3.eth.Contract(contractConfig.abi,contractConfig.address);
+    return contractConfig._instance;
   }
 }
 

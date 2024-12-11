@@ -32,11 +32,15 @@ function App() {
       ...prevInstances,
       ["JustinTestToken"]: instance
     }));
+
+    const instance2 = await Contract.RefundableLottery.getInstance(provider);
+
     console.log("instance created: ",instance);
   }
 
   async function addTransferListener(){
     const instance = instances["JustinTestToken"];
+    const instance2 = await Contract.JustinTestToken.getInstance(provider);
     if (!instance) {
       console.error(`JustinTestToken instance not created. Please create instance first.`);
       return;
@@ -46,23 +50,38 @@ function App() {
       console.log(`Transfer from ${from} to ${to} of ${value.toString()} tokens`);
     };
 
+    const handleTransfer2 = async (from, to, value, event) => {
+      console.log(`Transfer 2 from ${from} to ${to} of ${value.toString()} tokens`);
+    }
+    const filter = await instance.filters.Transfer();  
+    const events = await instance.queryFilter(filter);
+
+
     //Mointor all Transfer event
     //instance.on("Transfer", handleTransfer);
     
     //Monitor Transfer event from specific address, all to specific address
-    const filter = instance.filters.Transfer("0x0000000000000000000000000000000000000000");
-    instance.on(filter, handleTransfer);
+    //const filter = instance.filters.Transfer("0x0000000000000000000000000000000000000000");
+    //instance.on(filter, handleTransfer);
+    instance.on("Transfer", handleTransfer);
+    instance.on("Transfer", handleTransfer2);
+    instance.off("Transfer", handleTransfer2);
+    
+    instance2.on("Transfer", () => {
+      console.log("Transfer event from instance2");
+    });
 
     //remove listener when user closes the tab
     window.addEventListener('beforeunload', () => {
       if (instance) {
-        instance.off("Transfer", handleTransfer);
+        //instance.off("Transfer", handleTransfer);
         console.log("Listener removed");
       }
     });
 
     console.log("listener added");
   }
+
   async function totalSupply(){
     const instance = instances["JustinTestToken"];
     if (!instance) {
@@ -71,6 +90,13 @@ function App() {
     }
     const totalSupply = await instance.totalSupply();
     console.log("totalSupply: ", totalSupply.toString());
+
+    const topic = await instance.filters.Transfer();
+    console.log("Topic:", topic);
+    
+    const events = await instance.queryFilter(topic);
+    //const events = await getPastEvents(topic, instance.address);
+    console.log("events: ", events);
   }
   async function mint(){
     const instance = instances["JustinTestToken"];

@@ -1,5 +1,6 @@
 import JustinTestTokenAbi from './JustinTestToken.json'
 import { ethers } from 'ethers';
+import RefundableLotteryAbi from './RefundableLottery.json'
 
 const ETHEREUM_MAINNET = {
   chainId: '0x1',
@@ -29,13 +30,27 @@ export const Contract = {
   JustinTestToken:{
     contractName:JustinTestTokenAbi.contractName,
     address:'0x03b04076860da07a5938689001A6A21d6778a628',
+    _instance : null,
     abi:JustinTestTokenAbi.abi,
+    getInstance:async function(provider){
+      return await Contract._getInstance(this, provider);
+    }
+  },
+  RefundableLottery:{
+    contractName:RefundableLotteryAbi.contractName,
+    address: "0x2acc805ce5ed2695832eead1dd95e662f853f688",
+    creationBlockNumber: 7193618,
+    abi:RefundableLotteryAbi.abi,
+    _instance: null,
     getInstance:async function(provider){
       return await Contract._getInstance(this, provider);
     }
   },
   
   _getInstance: async function (contractConfig, provider) {
+    if (contractConfig._instance) {
+      return contractConfig._instance;
+    }
     const signer = provider?.getSigner();
     const network = await provider?.getNetwork();
     if (network?.chainId !== parseInt(Contract.NETWORK.chainId, 16)) {
@@ -43,7 +58,8 @@ export const Contract = {
                     " contract ", contractConfig.contractName, " was deployed on chain: ", Contract.NETWORK.chainId);
       return null;
     }
-    return new ethers.Contract(contractConfig.address, contractConfig.abi, signer);
+    contractConfig._instance = new ethers.Contract(contractConfig.address, contractConfig.abi, signer);
+    return contractConfig._instance;
   }
 }
 

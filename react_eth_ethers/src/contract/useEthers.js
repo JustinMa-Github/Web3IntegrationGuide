@@ -29,7 +29,10 @@ const useEthers = () => {
     }
   };
 
-  const disconnect = () => {
+  const disconnect = async () => {
+    if (provider) {
+      await provider.disconnect();
+    }
     setProvider(null);
     setSigner(null);
     setAccount(null);

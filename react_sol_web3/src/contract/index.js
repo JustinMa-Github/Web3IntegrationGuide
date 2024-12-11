@@ -12,12 +12,12 @@ export const Contract = {
     address: token_minter_idl.address,
     idl: token_minter_idl,
     mintAccount:null,
+    _instance : null,
     getInstance:async function(provider){
       const instance = await Contract._getInstance(this, provider);
-      const programId = new PublicKey(this.address)
       const [mintPda, mintBump] = PublicKey.findProgramAddressSync(
         [Buffer.from("mint")],
-        programId
+        new PublicKey(this.address)
       );
 
       this.mintAccount = mintPda;
@@ -26,7 +26,11 @@ export const Contract = {
   },
 
   _getInstance: async function (contractConfig, provider) {
-    return new anchor.Program(contractConfig.idl, provider);
+    if (contractConfig._instance) {
+      return contractConfig._instance;
+    }
+    contractConfig._instance = new anchor.Program(contractConfig.idl, provider);
+    return contractConfig._instance;
   }
 };
 

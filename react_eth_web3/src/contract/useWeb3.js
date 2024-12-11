@@ -1,4 +1,3 @@
-// useEthers.js
 import { useState, useEffect } from 'react';
 import Web3 from 'web3';
 
@@ -29,7 +28,10 @@ const useWeb3 = () => {
     }
   };
 
-  const disconnect = () => {
+  const disconnect = async () => {
+    if (provider) {
+      await provider.disconnect();
+    }
     setAccount(null);
     setProvider(null);
     setChainId(null);
